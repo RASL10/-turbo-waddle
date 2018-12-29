@@ -1,0 +1,9 @@
+:local(.navBarSpacing) {
+    display: flex;
+    justify-content: space-between;
+}
+
+:local(.navBarSpacing p) {
+    margin-right: 10px;
+    display: inline-block;
+}

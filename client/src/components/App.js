@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './App.css'
 import People from './people/People'
+import LandingNavBar from './LandingNavBar/LandingNavBar';
 
 class App extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class App extends Component {
     
     return (
       <div >
+        <LandingNavBar />
       <div className={styles.font} onClick={this.toggleGranda} >
         Let's try something
         </div>

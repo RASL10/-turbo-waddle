@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import styles from './LandingNavBar.css'
+import {Link} from 'react-router-dom'
 
 export default class LandingNavBar extends Component {
     constructor(props) {
@@ -9,13 +11,13 @@ export default class LandingNavBar extends Component {
 }
   render() {
     return (
-      <div>
+      <div className={styles.navBarSpacing}>
         <div>
-            <p>ClosetShare</p>
+        <p>closetShare</p>
         </div>
         <div>
-            <p>Register</p>
-            <p>Log in</p>
+            <p to='/'>Register</p>
+            <Link to='/login'>Login</Link> 
         </div>
       </div>
     )
