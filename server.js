@@ -1,6 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const users = require('./routes/api/users');
+// const profile = require('./routes/api/profile');
+// const posts = require('./routes/api/posts');
+
 const port = process.env.PORT || 5000;
 const mysql = require('mysql');
 const cors = require('cors')
@@ -20,9 +24,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
 
+app.use('/api/people/add', users);
+
 app.get('/', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });
+
+// app.use('/api/profile', profile);
+// app.use('/api/posts', posts);
 
 
 app.get('/api/people', (req, res, next) => {
@@ -37,25 +46,6 @@ app.get('/api/people', (req, res, next) => {
 })
 })
 
-app.post('/api/people/add', (req, res, next) => {
-  const {name, age} = req.body
-  console.log(name, age)
 
-  if(!name || !age) {
-    return res.sendStatus(400);
-  }
-
-  const sql = 'INSERT INTO turbo.people SET ?'
-  const values = {name: name, age: age};
-  con.query(sql, values, function(error, result){
-    if(error) {
-      console.log('Help')
-      next(error);
-    } else {
-        console.log('User added to database with ID: ' + result.insertId)
-          res.send('User added to database with ID: ' + result.insertId);
-        }
-    })
-})
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
